@@ -6,18 +6,18 @@
             </div>
 
             <div class="login-form">
-                <el-form :model="loginForm" :rules="rules" ref="loginForm">
+                <el-form :model="userForm" :rules="rules" ref="loginForm">
                     <el-form-item prop="userName">
                         <el-input
                             prefix-icon="el-icon-user"
                             placeholder="请输入用户名"
-                            v-model="loginForm.userName"></el-input>
+                            v-model="userForm.userName"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
                         <el-input type="password"
                             prefix-icon="el-icon-key"
                             placeholder="请输入密码"
-                            v-model="loginForm.password"></el-input>
+                            v-model="userForm.password"></el-input>
                     </el-form-item>
                     <el-form-item class="form-btns">
                         <el-button type="primary" @click="doLogin('loginForm')">登录</el-button>
@@ -34,7 +34,7 @@ export default {
   name: 'Login',
   data () {
     return {
-      loginForm: {
+      userForm: {
         userName: '',
         password: ''
       },
@@ -54,9 +54,18 @@ export default {
     doLogin (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$message({
-            message: '登录成功！',
-            type: 'success'
+          this.$http.post('user/login', this.userForm).then(response => {
+            console.log(response)
+            this.$message({
+              message: response.data.message,
+              type: 'success'
+            })
+            // token只在网站打开期间生效，所以将token保存在sessionStorage中
+            window.sessionStorage.setItem('token', response.data.token)
+            // 通过编程式路由导航跳转到后台主页，路由地址是home
+            this.$router.push('/home')
+          }).catch(error => {
+            console.log(error)
           })
         } else {
           return false
