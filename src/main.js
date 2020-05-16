@@ -5,7 +5,7 @@ import '@/assets/styles/global.css'
 import './plugins/element.js'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://127.0.0.1/8088/api/v1'
+axios.defaults.baseURL = 'http://127.0.0.1:8088/kdshop/'
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
