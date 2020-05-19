@@ -55,7 +55,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$http.post('user/login', this.userForm).then(response => {
-            console.log(response)
+            // console.log(response)
             this.$message({
               message: response.data.message,
               type: 'success'
