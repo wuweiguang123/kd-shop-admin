@@ -56,6 +56,16 @@ export default {
         if (valid) {
           this.$http.post('user/login', this.userForm).then(response => {
             // console.log(response)
+            // 当用户名密码错误时
+            if (response.data.code === '-1') {
+              this.$message({
+                message: response.data.message,
+                type: 'error'
+              })
+              this.userForm.userName = ''
+              this.userForm.password = ''
+              return false
+            }
             this.$message({
               message: response.data.message,
               type: 'success'
