@@ -7,7 +7,7 @@ import {
   Menu, MenuItem, Submenu,
   Breadcrumb, BreadcrumbItem,
   Card,
-  Table, TableColumn
+  Table, TableColumn, Pagination
 } from 'element-ui'
 
 Vue.use(Button)
@@ -27,5 +27,6 @@ Vue.use(BreadcrumbItem)
 Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Pagination)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
