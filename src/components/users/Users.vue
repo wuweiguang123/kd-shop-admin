@@ -13,6 +13,8 @@
             <el-button type="primary">添加用户</el-button>
             <!-- 表格区域 -->
             <el-table :data="userList" border stripe style="width: 100%">
+                <!-- 序号列 -->
+                <el-table-column type="index"></el-table-column>
                 <el-table-column
                     prop="username" label="用户名">
                 </el-table-column>
